@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobsRun | Find Your Next Opportunity</title>
+  <meta name="description" content="JobsRun – Discover the latest job opportunities and apply instantly." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #0f172a;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    header p {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .job-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.1);
+    }
+
+    .job-header h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      color: var(--secondary);
+    }
+
+    .company {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .apply-btn {
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: block;
+    }
+
+    .apply-btn:hover {
+      background: #1d4ed8;
+      transform: scale(1.03);
+    }
+
+    footer {
+      margin-top: 4rem;
+      background: var(--secondary);
+      color: #cbd5f5;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Modal */
+    #job-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-content {
+      background: #fff;
+      max-width: 700px;
+      width: 90%;
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>JobsRun</h1>
+  <p>Your trusted hub for fresh and verified job opportunities</p>
+</header>
+
+<main class="container">
+  <section class="jobs-grid">
+
+    <article class="job-card">
+      <div>
+        <div class="job-header">
+          <h2>Frontend Developer</h2>
+          <div class="company">TechNova Solutions</div>
+          <div class="meta">📍 Remote · 🕒 Full-time · 💼 IT</div>
+        </div>
+        <p class="description">Creative Frontend Developer needed to build modern web interfaces.</p>
+      </div>
+      <a href="#" class="apply-btn read-more" data-apply="https://example.com/apply/frontend">READ MORE</a>
+    </article>
+
+  </section>
+</main>
+
+<footer>
+  © <span>JobsRun</span> 2026 · All rights reserved
+</footer>
+
+<!-- Modal -->
+<div id="job-modal">
+  <div class="modal-content">
+    <a href="#" class="close-modal">&times;</a>
+    <h2>Frontend Developer</h2>
+    <p class="company">TechNova Solutions</p>
+    <p class="meta">📍 Remote · 🕒 Full-time · 💼 IT</p>
+    <p>As a Frontend Developer, you will design and develop modern, responsive interfaces.</p>
+    <h4>Requirements</h4>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>Responsive design</li>
+      <li>Team collaboration</li>
+    </ul>
+    <a id="applyLink" href="#" target="_blank" rel="noopener" class="apply-btn">APPLY NOW</a>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('job-modal');
+  const applyLink = document.getElementById('applyLink');
+
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      applyLink.href = btn.dataset.apply;
+      modal.style.display = 'flex';
+    });
+  });
+
+  document.querySelector('.close-modal').addEventListener('click', e => {
+    e.preventDefault();
+    modal.style.display = 'none';
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+</script>
+
+<!-- Link Rotator Timer (Bottom Right, Transparent) -->
+<style>
+  #link-rotator {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    font-size: 10px;
+    color: rgba(30,41,59,0.6);
+    background: transparent;
+    z-index: 5;
+    pointer-events: none;
+  }
+</style>
+<div id="link-rotator">30</div>
+
+<script>
+  (function () {
+    const links = [
+      "https://www.effectivegatecpm.com/v93s05gn?key=3cab5881feaee45a5780421c48da6787",
+      "https://www.effectivegatecpm.com/bpz0n0n6t9?key=a5bab98ad69db86271b1e40d6639cd26",
+      "https://www.effectivegatecpm.com/nbd7pstq?key=5532dcf17f25e954e31ae2561a521684",
+      "https://www.effectivegatecpm.com/m55itrie?key=b64883a2521763cbdc6845d6e555ba3d",
+      "https://www.effectivegatecpm.com/d5hbf035?key=989c1c031acb78d8317021b9b40b194c",
+      "https://www.effectivegatecpm.com/dcfwz06cpy?key=1035ba1eb0d97e94645026074429f3b3"
+    ];
+
+    const intervalSeconds = 30;
+    let index = 0;
+    let remaining = intervalSeconds;
+    const timerEl = document.getElementById('link-rotator');
+
+    const tick = setInterval(() => {
+      if (index >= links.length) {
+        timerEl.textContent = '';
+        clearInterval(tick);
+        return;
+      }
+      remaining--;
+      timerEl.textContent = remaining;
+      if (remaining <= 0) {
+        window.open(links[index], '_blank', 'noopener');
+        index++;
+        remaining = intervalSeconds;
+      }
+    }, 1000);
+  })();
+</script>
+
+</body>
+</html>

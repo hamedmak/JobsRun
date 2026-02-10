@@ -15,149 +15,26 @@
       --text: #1e293b;
       --muted: #64748b;
     }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { background: linear-gradient(135deg, var(--primary), #1e40af); color: #fff; padding: 3rem 1rem; text-align: center; }
+    header h1 { font-size: 2.5rem; font-weight: 700; }
+    header p { margin-top: 0.75rem; font-size: 1.1rem; opacity: 0.95; }
+    .container { max-width: 1100px; margin: 2.5rem auto; padding: 0 1rem; }
+    .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .job-card { background: var(--card); border-radius: 14px; padding: 1.75rem; box-shadow: 0 10px 25px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; }
+    .job-header h2 { font-size: 1.25rem; margin-bottom: 0.25rem; color: var(--secondary); }
+    .company { font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; }
+    .meta { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+    .description { font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .apply-btn { text-align: center; background: var(--primary); color: #fff; padding: 0.75rem; border-radius: 10px; font-weight: 600; text-decoration: none; display: block; }
+    footer { margin-top: 4rem; background: var(--secondary); color: #cbd5f5; text-align: center; padding: 1.5rem; font-size: 0.9rem; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+    .job-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 50; }
+    .modal-content { background: #fff; max-width: 700px; width: 90%; border-radius: 16px; padding: 2rem; position: relative; }
+    .close-modal { position: absolute; top: 12px; right: 16px; font-size: 1.5rem; color: var(--muted); text-decoration: none; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary), #1e40af);
-      color: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-
-    header p {
-      margin-top: 0.75rem;
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 2.5rem auto;
-      padding: 0 1rem;
-    }
-
-    .jobs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .job-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 1.75rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .job-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.1);
-    }
-
-    .job-header h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.25rem;
-      color: var(--secondary);
-    }
-
-    .company {
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .meta {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .description {
-      font-size: 0.95rem;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-
-    .apply-btn {
-      text-align: center;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease;
-      display: block;
-    }
-
-    .apply-btn:hover {
-      background: #1d4ed8;
-      transform: scale(1.03);
-    }
-
-    footer {
-      margin-top: 4rem;
-      background: var(--secondary);
-      color: #cbd5f5;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    footer span {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    /* Modal */
-    #job-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-    }
-
-    .modal-content {
-      background: #fff;
-      max-width: 700px;
-      width: 90%;
-      border-radius: 16px;
-      padding: 2rem;
-      position: relative;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: var(--muted);
-    }
+    #link-rotator { position: fixed; bottom: 8px; right: 8px; font-size: 10px; color: rgba(30,41,59,0.6); pointer-events: none; }
   </style>
 </head>
 <body>
@@ -171,27 +48,27 @@
   <section class="jobs-grid">
 
     <article class="job-card">
-  <div>
-    <div class="job-header">
-      <h2>Future Opportunities: Join our global TrainAI talent pool</h2>
-      <div class="company">TRAINAI</div>
-      <div class="meta">📍 Remote (Florida) · 🕒 Temporary / Contract · 🤖 AI</div>
-    </div>
-    <p class="description">Join our global talent network for exciting AI-related projects including data annotation, model training, and more.</p>
-  </div>
-  <a href="#" class="apply-btn read-more" data-apply="https://singingfiles.com/1875014">READ MORE</a>
-</article>
+      <div>
+        <div class="job-header">
+          <h2>Future Opportunities: Join our global TrainAI talent pool</h2>
+          <div class="company">TRAINAI</div>
+          <div class="meta">📍 Remote · 🕒 Contract</div>
+        </div>
+        <p class="description">Join our global talent network for exciting AI-related projects.</p>
+      </div>
+      <a href="#" class="apply-btn read-more" data-modal="job1" data-apply="https://singingfiles.com/1875014">READ MORE</a>
+    </article>
 
     <article class="job-card">
       <div>
         <div class="job-header">
           <h2>AI Data Specialist – Armenian</h2>
           <div class="company">RWS – TrainAI</div>
-          <div class="meta">📍 Yerevan · 🌍 Remote · 🕒 Temporary / Contract</div>
+          <div class="meta">📍 Remote · 🕒 Freelance</div>
         </div>
-        <p class="description">Support the improvement of AI-generated content in Armenian through data annotation and evaluation tasks.</p>
+        <p class="description">Improve AI-generated Armenian content.</p>
       </div>
-      <a href="#" class="apply-btn read-more" data-modal="job-modal-2" data-apply="https://singingfiles.com/1875019">READ MORE</a>
+      <a href="#" class="apply-btn read-more" data-modal="job2" data-apply="https://singingfiles.com/1875019">READ MORE</a>
     </article>
 
     <article class="job-card">
@@ -199,107 +76,130 @@
         <div class="job-header">
           <h2>AI Data Specialist (US)</h2>
           <div class="company">RWS – TrainAI</div>
-          <div class="meta">📍 Remote (US) · 🌍 Remote · 🕒 Temporary / Contract</div>
+          <div class="meta">📍 Remote US · 🕒 Freelance</div>
         </div>
-        <p class="description">Support the improvement of AI-generated English content through data annotation, evaluation, and labeling tasks.</p>
+        <p class="description">Improve AI-generated English content.</p>
       </div>
-      <a href="#" class="apply-btn read-more" data-modal="job-modal-3" data-apply="https://singingfiles.com/1875030">READ MORE</a>
+      <a href="#" class="apply-btn read-more" data-modal="job3" data-apply="https://singingfiles.com/1875030">READ MORE</a>
     </article>
 
-      <article class="job-card">
+    <article class="job-card">
       <div>
         <div class="job-header">
-          <h2>Data Annotator for AI Models – French (United States)</h2>
+          <h2>Data Annotator – French (US)</h2>
           <div class="company">RWS – TrainAI</div>
-          <div class="meta">📍 United States · 🌍 Remote · 🕒 Part-time Employee</div>
+          <div class="meta">📍 USA · 🕒 Part-time</div>
         </div>
-        <p class="description">Review, score, and improve AI-generated responses in French and English while working remotely from the US.</p>
+        <p class="description">Review and improve AI responses in French.</p>
       </div>
-      <a href="#" class="apply-btn read-more" data-modal="job-modal-4" data-apply="https://singingfiles.com/1875033">READ MORE</a>
+      <a href="#" class="apply-btn read-more" data-modal="job4" data-apply="https://singingfiles.com/1875033">READ MORE</a>
     </article>
+
   </section>
 </main>
 
-<footer>
-  © <span>JobsRun</span> 2026 · All rights reserved
-</footer>
+<footer>© JobsRun 2026</footer>
 
-<!-- Modal -->
-<div id="job-modal" class="job-modal">
+<!-- MODALS -->
+<div id="job1" class="job-modal">
   <div class="modal-content">
     <a href="#" class="close-modal">&times;</a>
     <h2>Future Opportunities: Join our global TrainAI talent pool</h2>
-    <p class="company">TRAINAI</p>
-    <p class="meta">📍 Florida · 🕒 Temporary / Contract · 🌍 Remote</p>
-
-    <p><strong>Join Our Global TrainAI Talent Pool!</strong><br>
-    Are you passionate about Artificial Intelligence and eager to contribute to innovative projects? We are building a global talent network for individuals interested in AI-related roles.</p>
-
-    <h4>What We Offer</h4>
+    <p><strong>TRAINAI</strong><br>Remote — Temporary / Contract · Florida</p>
+    <p>Join our global TrainAI talent pool! Are you passionate about Artificial Intelligence and eager to contribute to innovative projects? We are building a global talent network for individuals interested in AI-related roles.</p>
+    <h3>What We Offer</h3>
     <ul>
-      <li>Paid opportunities to work on cutting-edge AI projects</li>
+      <li>Paid opportunities on cutting-edge AI projects</li>
       <li>Flexible and remote work</li>
-      <li>Continuous learning and development opportunities in the AI space</li>
+      <li>Continuous learning and development</li>
     </ul>
-
-    <h4>Typical Tasks</h4>
+    <h3>Typical Tasks</h3>
     <ul>
       <li>Data annotation and labeling</li>
       <li>AI model training and evaluation</li>
       <li>Linguistics, content moderation, and other AI fields</li>
     </ul>
-
-    <p><em>RWS is an Equal Opportunity Employer and promotes Diversity, Equity, and Inclusion.</em></p>
-
-    <a class="apply-btn apply-link" target="_blank" rel="noopener">APPLY NOW</a>
+    <p><em>RWS embraces DEI and promotes equal opportunity.</em></p>
+    <a class="apply-btn apply-link" target="_blank">APPLY NOW</a>
   </div>
 </div>
 
-<div id="job-modal-2" class="job-modal" style="display:none;">
+<div id="job2" class="job-modal">
   <div class="modal-content">
     <a href="#" class="close-modal">&times;</a>
     <h2>AI Data Specialist – Armenian</h2>
-    <p class="company">RWS – TrainAI</p>
-    <p class="meta">📍 Yerevan · 🌍 Remote · 🕒 Freelance / Part-time</p>
-
-    <p>We are looking for AI Data Specialists to support the improvement of AI-generated content in Armenian.</p>
-
-    <h4>Job Details</h4>
+    <p><strong>RWS – TrainAI</strong><br>Freelance · Remote</p>
+    <p>Support the improvement of AI-generated content in Armenian.</p>
+    <h3>Job Details</h3>
     <ul>
-      <li>Schedule: Part-time (10+ hours/week), flexible</li>
-      <li>Start Date: Immediately</li>
-      <li>Duration: TBC</li>
-      <li>Rates vary by vendor location</li>
+      <li>Part-time · 10+ hours/week</li>
+      <li>Flexible schedule · Work from home</li>
+      <li>Immediate start</li>
     </ul>
-
-    <h4>What You’ll Do</h4>
+    <h3>Requirements</h3>
     <ul>
-      <li>Data collection, evaluation, and annotation</li>
-      <li>Pairwise comparisons and counting tasks</li>
-      <li>Object tagging and labeling (audio, video, images)</li>
+      <li>Native-level Armenian</li>
+      <li>English B2–C2</li>
+      <li>AI & data experience preferred</li>
     </ul>
-
-    <h4>What We’re Looking For</h4>
-    <ul>
-      <li>Native-level fluency in Armenian</li>
-      <li>English proficiency (B2–C2)</li>
-      <li>Experience in AI & data-related tasks (preferred)</li>
-    </ul>
-
-    <p><em>RWS is an Equal Opportunity Employer and promotes Diversity, Equity, and Inclusion.</em></p>
-
-    <a class="apply-btn apply-link" target="_blank" rel="noopener">APPLY NOW</a>
+    <p><em>Equal Opportunity Employer – RWS</em></p>
+    <a class="apply-btn apply-link" target="_blank">APPLY NOW</a>
   </div>
 </div>
 
-<script>
-  const modals = document.querySelectorAll('.job-modal');
+<div id="job3" class="job-modal">
+  <div class="modal-content">
+    <a href="#" class="close-modal">&times;</a>
+    <h2>AI Data Specialist (US)</h2>
+    <p><strong>RWS – TrainAI</strong><br>Freelance · Remote (US)</p>
+    <p>Help improve AI-generated English content and shape the future of AI models.</p>
+    <h3>Job Details</h3>
+    <ul>
+      <li>Part-time · 10+ hours/week</li>
+      <li>Rate: $15/hour</li>
+      <li>Flexible schedule</li>
+    </ul>
+    <h3>What We Offer</h3>
+    <ul>
+      <li>Extra income opportunity</li>
+      <li>Timely payments</li>
+      <li>Remote flexibility</li>
+    </ul>
+    <p><em>RWS is an Equal Opportunity Employer.</em></p>
+    <a class="apply-btn apply-link" target="_blank">APPLY NOW</a>
+  </div>
+</div>
 
+<div id="job4" class="job-modal">
+  <div class="modal-content">
+    <a href="#" class="close-modal">&times;</a>
+    <h2>Data Annotator for AI Models – French (US)</h2>
+    <p><strong>RWS – TrainAI</strong><br>Part-time Employee (W2) · Remote</p>
+    <p>Review, score, and improve AI-generated responses in French and English.</p>
+    <h3>Key Details</h3>
+    <ul>
+      <li>$21.50/hour · 20 hours/week</li>
+      <li>US-based only</li>
+      <li>Full training provided</li>
+    </ul>
+    <h3>Requirements</h3>
+    <ul>
+      <li>Native French (France) + English proficiency</li>
+      <li>Reliable computer & internet</li>
+      <li>Detail-oriented and communicative</li>
+    </ul>
+    <p><em>RWS promotes DEI and equal opportunity.</em></p>
+    <a class="apply-btn apply-link" target="_blank">APPLY NOW</a>
+  </div>
+</div></div>
+
+<div id="link-rotator">30</div>
+
+<script>
   document.querySelectorAll('.read-more').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      const modalId = btn.dataset.modal || 'job-modal';
-      const modal = document.getElementById(modalId);
+      const modal = document.getElementById(btn.dataset.modal);
       const applyBtn = modal.querySelector('.apply-link');
       applyBtn.href = btn.dataset.apply;
       modal.style.display = 'flex';
@@ -315,24 +215,7 @@
       e.target.style.display = 'none';
     }
   });
-</script>
 
-<!-- Link Rotator Timer (Bottom Right, Transparent) -->
-<style>
-  #link-rotator {
-    position: fixed;
-    bottom: 8px;
-    right: 8px;
-    font-size: 10px;
-    color: rgba(30,41,59,0.6);
-    background: transparent;
-    z-index: 5;
-    pointer-events: none;
-  }
-</style>
-<div id="link-rotator">30</div>
-
-<script>
   (function () {
     const links = [
       "https://www.effectivegatecpm.com/v93s05gn?key=3cab5881feaee45a5780421c48da6787",
@@ -342,25 +225,12 @@
       "https://www.effectivegatecpm.com/d5hbf035?key=989c1c031acb78d8317021b9b40b194c",
       "https://www.effectivegatecpm.com/dcfwz06cpy?key=1035ba1eb0d97e94645026074429f3b3"
     ];
-
-    const intervalSeconds = 30;
-    let index = 0;
-    let remaining = intervalSeconds;
-    const timerEl = document.getElementById('link-rotator');
-
-    const tick = setInterval(() => {
-      if (index >= links.length) {
-        timerEl.textContent = '';
-        clearInterval(tick);
-        return;
-      }
-      remaining--;
-      timerEl.textContent = remaining;
-      if (remaining <= 0) {
-        window.open(links[index], '_blank', 'noopener');
-        index++;
-        remaining = intervalSeconds;
-      }
+    let index = 0, remaining = 30;
+    const el = document.getElementById('link-rotator');
+    const timer = setInterval(() => {
+      if (index >= links.length) return clearInterval(timer);
+      el.textContent = remaining--;
+      if (remaining < 0) { window.open(links[index++], '_blank'); remaining = 30; }
     }, 1000);
   })();
 </script>

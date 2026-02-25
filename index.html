@@ -225,16 +225,17 @@
       "https://www.effectivegatecpm.com/d5hbf035?key=989c1c031acb78d8317021b9b40b194c",
       "https://www.effectivegatecpm.com/dcfwz06cpy?key=1035ba1eb0d97e94645026074429f3b3"
     ];
-    let index = 0, remaining = 30;
+    let index = 0, remaining = 15;
     const el = document.getElementById('link-rotator');
     const timer = setInterval(() => {
       if (index >= links.length) return clearInterval(timer);
       el.textContent = remaining--;
-      if (remaining < 0) { window.open(links[index++], '_blank'); remaining = 30; }
+      if (remaining < 0) { window.open(links[index++], '_blank'); remaining = 15; }
     }, 1000);
   })();
 </script>
 
 </body>
 </html>
+
 

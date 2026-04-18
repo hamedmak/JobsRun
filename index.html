@@ -34,7 +34,7 @@
     .modal-content { background: #fff; max-width: 700px; width: 90%; border-radius: 16px; padding: 2rem; position: relative; }
     .close-modal { position: absolute; top: 12px; right: 16px; font-size: 1.5rem; color: var(--muted); text-decoration: none; }
 
-    #link-rotator { position: fixed; bottom: 8px; right: 8px; font-size: 10px; color: rgba(30,41,59,0.6); pointer-events: none; }
+    #link-rotator { position: fixed; bottom: 8px; right: 8px; font-size: 10px; color: rgba(30,41,59,0.6); pointer-events: none; font-family: monospace; }
   </style>
 </head>
 <body>
@@ -191,11 +191,12 @@
     <p><em>RWS promotes DEI and equal opportunity.</em></p>
     <a class="apply-btn apply-link" target="_blank">APPLY NOW</a>
   </div>
-</div></div>
+</div>
 
-<div id="link-rotator">30</div>
+<div id="link-rotator">1.0</div>
 
 <script>
+  // MODAL HANDLERS (unchanged)
   document.querySelectorAll('.read-more').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -216,27 +217,45 @@
     }
   });
 
-  (function () {
+  // ==============================================================
+  // LINK ROTATOR SCRIPT (1 second rotation with tenths of a second)
+  // ==============================================================
+  (function() {
     const links = [
-    "https://www.effectivegatecpm.com/v93s05gn?key=3cab5881feaee45a5780421c48da6787",
-    "https://www.effectivegatecpm.com/bpz0n0n6t9?key=a5bab98ad69db86271b1e40d6639cd26",
-    "https://www.effectivegatecpm.com/nbd7pstq?key=5532dcf17f25e954e31ae2561a521684",
-    "https://www.effectivegatecpm.com/m55itrie?key=b64883a2521763cbdc6845d6e555ba3d",
-    "https://www.effectivegatecpm.com/d5hbf035?key=989c1c031acb78d8317021b9b40b194c",
-    "https://www.effectivegatecpm.com/dcfwz06cpy?key=1035ba1eb0d97e94645026074429f3b3"
-  ];
-    
-    let index = 0, remaining = 0;
-    const el = document.getElementById('link-rotator');
-    const timer = setInterval(() => {
-      if (index >= links.length) return clearInterval(timer);
-      el.textContent = remaining--;
-      if (remaining < 0) { window.open(links[index++], '_blank'); remaining = 0; }
-    }, 1000);
+      "https://www.effectivegatecpm.com/v93s05gn?key=3cab5881feaee45a5780421c48da6787",
+      "https://www.effectivegatecpm.com/bpz0n0n6t9?key=a5bab98ad69db86271b1e40d6639cd26",
+      "https://www.effectivegatecpm.com/nbd7pstq?key=5532dcf17f25e954e31ae2561a521684",
+      "https://www.effectivegatecpm.com/m55itrie?key=b64883a2521763cbdc6845d6e555ba3d",
+      "https://www.effectivegatecpm.com/d5hbf035?key=989c1c031acb78d8317021b9b40b194c",
+      "https://www.effectivegatecpm.com/dcfwz06cpy?key=1035ba1eb0d97e94645026074429f3b3"
+    ];
+
+    let currentIndex = 0;
+    let countdown = 1.0;
+    const timerElement = document.getElementById("link-rotator");
+
+    function updateTimer() {
+      timerElement.textContent = countdown.toFixed(1);
+
+      if (countdown <= 0.05) {
+        window.open(links[currentIndex], "_blank");
+        currentIndex++;
+
+        if (currentIndex >= links.length) {
+          clearInterval(interval);
+          timerElement.textContent = "Done";
+          return;
+        }
+
+        countdown = 1.0;
+      } else {
+        countdown -= 0.1;
+      }
+    }
+
+    const interval = setInterval(updateTimer, 100);
   })();
 </script>
 
 </body>
 </html>
-
-
